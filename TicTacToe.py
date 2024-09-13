@@ -74,7 +74,10 @@ def floor(value):
     return ((value + 200) // 133) * 133 - 200
 
 
+# Diccionario que mantiene el estado de juego.
+# Se inicia con 0 (el jugador que juega con X)
 state = {'player': 0}
+# Los jugadores del juego. X es el cero, y O es el uno.
 players = [drawx, drawo]
 
 
@@ -89,10 +92,17 @@ def tap(x, y):
     state['player'] = not player
 
 
+# Configura la ventana de de 420x420 en la pantalla
 setup(420, 420, 370, 0)
+# Esconde el cursor para que no se vea mientras se dibuja el juego
 hideturtle()
+# Desactiva la animación en la actualización de dibujos
 tracer(False)
+# Llama a la función de grid
 grid()
+# Actualiza la pantalla con método de turtle
 update()
+# Cuando se hace click en la pantalla llama la función tap
 onscreenclick(tap)
+# Permite que la ventana del juego se quede abierta
 done()
