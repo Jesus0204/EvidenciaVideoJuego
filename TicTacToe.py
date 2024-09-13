@@ -81,14 +81,33 @@ state = {'player': 0}
 players = [drawx, drawo]
 
 
+"""
+Maneja el evento de clic del usuario para dibujar
+una 'X' o una 'O' en la casilla seleccionada.
+
+Parámetros:
+    x (int): Coordenada horizontal del clic.
+    y (int): Coordenada vertical del clic.
+
+Valor de Retorno:
+    Ninguno.
+"""
+
+
 def tap(x, y):
-    """Draw X or O in tapped square."""
+    # Redondea la coordenada X con la función
     x = floor(x)
+    # Redondea la coordenada Y con la función
     y = floor(y)
+    # Obtiene al jugador actual
     player = state['player']
+    # Selecciona si se sibuja una X o una O
     draw = players[player]
+    # Llama la función seleccionada para dibujar
     draw(x, y)
+    # Actualiza la pantalla con método de turtle
     update()
+    # Cambia al siguiente jugador del diccionario
     state['player'] = not player
 
 
