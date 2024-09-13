@@ -6,7 +6,7 @@ from freegames import line
 
 # Inicializas todo el estado del tablero en cero
 boardState = [[0, 0, 0],
-              [0, 1, 0],
+              [0, 0, 0],
               [0, 0, 0]]
 
 """
@@ -40,6 +40,12 @@ Valor de Retorno:
 
 
 def drawx(x, y):
+    # Sacas el número de la columna en la que se dio click
+    row, col = get_cell(x, y)
+
+    # Cambias el estado del tablero a 1 cuando se inserte la X
+    boardState[row][col] = 1
+
     color('red')
     width(5)
 
@@ -61,6 +67,12 @@ Valor de Retorno:
 
 
 def drawo(x, y):
+    # Sacas el número de la columna en la que se dio click
+    row, col = get_cell(x, y)
+
+    # Cambias el estado del tablero a 1 cuando se inserte la X
+    boardState[row][col] = 1
+
     color('blue')
     width(5)
 
