@@ -82,6 +82,38 @@ def floor(value):
     return ((value + 200) // 133) * 133 - 200
 
 
+"""
+    Convierte las coordenadas (x, y) en índices de fila y columna.
+
+    Parámetros:
+        x (int): Coordenada horizontal del clic.
+        y (int): Coordenada vertical del clic.
+
+    Valor de Retorno:
+        (int, int): Tupla que contiene (fila, columna).
+    """
+
+
+def get_cell(x, y):
+    # Determina la columba basada en el valor de x
+    if x == 66.0:
+        col = 2
+    elif x == -67.0:
+        col = 1
+    elif x == -200.0:
+        col = 0
+
+    # Determina la fila basada en el valor de y
+    if y == 66.0:
+        row = 0
+    elif y == -67.0:
+        row = 1
+    elif y == -200.0:
+        row = 2
+
+    return int(row), int(col)
+
+
 # Diccionario que mantiene el estado de juego.
 # Se inicia con 0 (el jugador que juega con X)
 state = {'player': 0}
