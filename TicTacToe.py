@@ -1,5 +1,6 @@
 from turtle import (update, up, goto, down, circle, setup,
-                    hideturtle, tracer, done, onscreenclick)
+                    hideturtle, tracer, done, onscreenclick,
+                    color, width)
 
 from freegames import line
 
@@ -34,6 +35,9 @@ Valor de Retorno:
 
 
 def drawx(x, y):
+    color('red')
+    width(5)
+
     line(x, y, x + 133, y + 133)
     line(x, y + 133, x + 133, y)
 
@@ -51,10 +55,13 @@ Valor de Retorno:
 
 
 def drawo(x, y):
+    color('blue')
+    width(5)
+
     up()
     goto(x + 67, y + 5)
     down()
-    circle(62)
+    circle(60)
 
 
 """
