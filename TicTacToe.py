@@ -4,6 +4,11 @@ from turtle import (update, up, goto, down, circle, setup,
 
 from freegames import line
 
+# Inicializas todo el estado del tablero en cero
+boardState = [[0, 0, 0],
+              [0, 1, 0],
+              [0, 0, 0]]
+
 """
 Dibuja la cuadricula del juego.
 
@@ -139,16 +144,24 @@ def tap(x, y):
     x = floor(x)
     # Redondea la coordenada Y con la función
     y = floor(y)
-    # Obtiene al jugador actual
-    player = state['player']
-    # Selecciona si se sibuja una X o una O
-    draw = players[player]
-    # Llama la función seleccionada para dibujar
-    draw(x, y)
-    # Actualiza la pantalla con método de turtle
-    update()
-    # Cambia al siguiente jugador del diccionario
-    state['player'] = not player
+
+    # Sacas el número de la columna en la que se dio click
+    row, col = get_cell(x, y)
+
+    # Checar el estado de tablero para vr si esta ocupada
+    if boardState[row][col] == 0:
+        # Obtiene al jugador actual
+        player = state['player']
+        # Selecciona si se sibuja una X o una O
+        draw = players[player]
+        # Llama la función seleccionada para dibujar
+        draw(x, y)
+        # Actualiza la pantalla con método de turtle
+        update()
+        # Cambia al siguiente jugador del diccionario
+        state['player'] = not player
+    else:
+        print("Esta fila esta ocupada por favor intenta con otra.")
 
 
 # Configura la ventana de de 420x420 en la pantalla
