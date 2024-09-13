@@ -38,8 +38,9 @@ def drawx(x, y):
     color('red')
     width(5)
 
-    line(x, y, x + 133, y + 133)
-    line(x, y + 133, x + 133, y)
+    centrado = 20
+    line(x + centrado, y + centrado, x + 133 - centrado, y + 133 - centrado)
+    line(x + centrado, y + 133 - centrado, x + 133 - centrado, y + centrado)
 
 
 """
@@ -59,9 +60,9 @@ def drawo(x, y):
     width(5)
 
     up()
-    goto(x + 67, y + 5)
+    goto(x + 67, y + 25)
     down()
-    circle(60)
+    circle(45)
 
 
 """
