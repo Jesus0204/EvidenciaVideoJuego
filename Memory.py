@@ -9,19 +9,18 @@ Exercises:
 5. Use letters instead of tiles.
 """
 
-from random import *
+from random import shuffle
 from turtle import *
-
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
-state = {'mark': None}
-hide = [True] * 64
+tiles = list(range(32)) * 2  # Lista de números del 0 al 31 duplicados
+state = {'mark': None}  # Mantiene el estado de la tile seleccionada
+hide = [True] * 64  # Estado de ocultamiento de las tiles
 
 
 def square(x, y):
-    """Draw white square with black outline at (x, y)."""
+    """Dibuja un cuadrado blanco con borde negro en (x, y)."""
     up()
     goto(x, y)
     down()
@@ -34,34 +33,37 @@ def square(x, y):
 
 
 def index(x, y):
-    """Convert (x, y) coordinates to tiles index."""
+    """Convierte las coordenadas (x, y) en el índice de una tile."""
     return int((x + 200) // 50 + ((y + 200) // 50) * 8)
 
 
 def xy(count):
-    """Convert tiles count to (x, y) coordinates."""
+    """Convierte el índice de una tile en coordenadas (x, y)."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
 
 def tap(x, y):
-    """Update mark and hidden tiles based on tap."""
+    """Actualiza el estado del juego basado en un clic en (x, y)."""
     spot = index(x, y)
     mark = state['mark']
 
+    # Si no hay una tile seleccionada o no coinciden, marca la nueva tile
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
     else:
-        hide[spot] = False
-        hide[mark] = False
+        hide[spot] = False  # Revela la tile seleccionada
+        hide[mark] = False  # Revela la tile previamente seleccionada
         state['mark'] = None
 
+
 def draw():
-    """Draw image and tiles."""
+    """Dibuja el tablero de tiles."""
     clear()
     goto(0, 0)
     shape(car)
     stamp()
 
+    # Dibuja las tiles ocultas
     for count in range(64):
         if hide[count]:
             x, y = xy(count)
@@ -69,6 +71,7 @@ def draw():
 
     mark = state['mark']
 
+    # Dibuja el número de la tile seleccionada
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
