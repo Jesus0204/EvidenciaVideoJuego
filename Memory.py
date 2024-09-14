@@ -10,7 +10,9 @@ Exercises:
 """
 
 from random import shuffle
-from turtle import *
+from turtle import (up, goto, down, color, begin_fill, forward, left, end_fill,
+                    clear, shape, stamp, update, ontimer, setup, addshape,
+                    hideturtle, tracer, onscreenclick, done, write)
 from freegames import path
 
 car = path('car.gif')
