@@ -19,6 +19,7 @@ car = path('car.gif')
 tiles = list(range(32)) * 2  # Lista de números del 0 al 31 duplicados
 state = {'mark': None}  # Mantiene el estado de la tile seleccionada
 hide = [True] * 64  # Estado de ocultamiento de las tiles
+taps = 0  # Contador de taps añadido
 
 
 def square(x, y):
@@ -46,6 +47,9 @@ def xy(count):
 
 def tap(x, y):
     """Actualiza el estado del juego basado en un clic en (x, y)."""
+    global taps
+    taps += 1  # Incrementa el contador de taps en cada clic
+
     spot = index(x, y)
     mark = state['mark']
 
@@ -80,6 +84,12 @@ def draw():
         goto(x + 2, y)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
+
+    # Muestra el número de taps (parte añadida)
+    up()
+    goto(0, 180)
+    color('black')
+    write(f'Taps: {taps}', align='center', font=('Arial', 16, 'normal'))
 
     update()
     ontimer(draw, 100)
