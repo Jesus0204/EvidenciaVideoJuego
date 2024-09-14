@@ -85,11 +85,16 @@ def draw():
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
-    # Muestra el número de taps (parte añadida)
+    # Muestra el número de taps
     up()
     goto(0, 180)
     color('black')
     write(f'Taps: {taps}', align='center', font=('Arial', 16, 'normal'))
+
+    # Verificación para detectar si todas las tiles están reveladas
+    if all(not hidden for hidden in hide):
+        goto(0, 0)
+        write('¡Juego completado!', align='center', font=('Arial', 30, 'bold'))
 
     update()
     ontimer(draw, 100)
