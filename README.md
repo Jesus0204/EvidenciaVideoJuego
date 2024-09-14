@@ -61,3 +61,55 @@ Finalmente, en las funciones de drawx y drawo cambie el estado del tablero. En a
     boardState[row][col] = 1
 ```
 Y esas fueron todas las modificaciones que hice en está evidencia :)
+
+## Memorama - Claudio Gabriel Lopez Briceño 
+
+Se agregaron dos nuevas funciones al videojuego de memoria, las cuales permiten contar el número de clics realizados (taps) y detectar cuándo todas las casillas han sido reveladas.
+
+### Contador de taps
+
+Se añadió una función para contar el número de taps (clics) que el usuario realiza durante el juego. Cada vez que el jugador selecciona una casilla, este contador se incrementa y se muestra en la parte superior de la pantalla.
+
+Para implementar esta funcionalidad, se añadió una nueva variable global `taps` que se incrementa cada vez que se selecciona una casilla. La visualización del número de taps se realiza en la función `draw`. Para ver estos cambios, puedes revisar las siguientes secciones:
+
+1. Definición de la variable global `taps`:
+
+```python
+taps = 0  # Contador de taps añadido
+```
+
+2. Incremento del contador en la función `tap`:
+
+```python
+def tap(x, y):
+    global taps
+    taps += 1  # Incrementa el contador de taps en cada clic
+    # Resto del código para manejar la selección de casillas
+```
+
+3. Visualización del contador de taps en la pantalla:
+```python
+def draw():
+    # Código para dibujar el tablero y las casillas
+    up()
+    goto(0, 180)
+    color('black')
+    write(f'Taps: {taps}', align='center', font=('Arial', 16, 'normal'))
+    # Resto del código de la función
+```
+
+### Deteccion de juego completado
+
+Otra funcionalidad añadida fue la detección automática cuando todas las casillas han sido reveladas. Si todas las casillas están destapadas, el juego muestra un mensaje indicando que se ha completado.
+
+Para detectar cuando todas las casillas están destapadas, se verifica el estado de la lista hide, que indica qué casillas están ocultas. Si todas las casillas están descubiertas (es decir, False en todas las posiciones), se despliega el mensaje "¡Juego completado!". Los cambios relevantes se encuentran en la función `draw`.
+
+1. Verificacion de casillas descubiertas:
+
+```python
+if all(not hidden for hidden in hide):
+    goto(0, 0)
+    write('¡Juego completado!', align='center', font=('Arial', 30, 'bold'))
+```
+
+Con esto, cuando el jugador logre destapar todas las casillas, el juego detectará el logro y mostrará un mensaje de felicitación.
